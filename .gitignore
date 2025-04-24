@@ -98,3 +98,6 @@ dmypy.json
 test
 .test
 /test
+
+
+adding_bulk_products.py
