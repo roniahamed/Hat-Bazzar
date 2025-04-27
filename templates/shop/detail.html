@@ -1,0 +1,104 @@
+{% extends "common/index.html" %}
+{% load static %}
+{% block title %} {{product_object.title}} {% endblock %}
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'shop/detail.css' %}">
+
+
+    <div class="container py-5">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-6">
+                <img src="{{product_object.image}}" alt="Product" class="img-fluid rounded shadow product-img" />
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6">
+                <h1 class="product-title">{{product_object.title}}</h1>
+                <p class="text-success fw-semibold">Status: In Stock</p>
+                <p>Product Code: <strong>39241</strong></p>
+
+                <!-- Pricing -->
+                <div class="price mb-3">
+                    <div><span>${{product_object.discount_price}}</span> <del>${{product_object.price}}</del></div>
+                    <small class="text-muted">Regular Price:{{product_object.price}}</small>
+                </div>
+
+                <!-- Key Features -->
+                <h5>Key Features</h5>
+                <ul>
+                    <li>AMD Ryzen 7 7700 Gaming Processor</li>
+                    <li>MSI PRO B650M-P DDR5 AM5 mATX Motherboard</li>
+                    <li>TEAM VULCAN RED 8GB DDR5 6000MHz RAM</li>
+                    <li>WD SN770 500GB PCIe Gen4 NVMe SSD</li>
+                </ul>
+
+                <!-- Payment Options -->
+                <h5 class="mt-4">Payment Options</h5>
+                <div class="payment-option">
+                    <input type="radio" name="payment" checked> 50,999৳ (Cash Discount Price)
+                </div>
+                <div class="payment-option">
+                    <input type="radio" name="payment"> 4,675৳/month (0% EMI for 12 months)
+                </div>
+
+                <!-- Quantity + Button -->
+                <div class="d-flex align-items-center mt-4">
+                    <input type="number" value="1" min="1" class="form-control w-25 me-3" />
+                    <button class="btn btn-primary">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Section -->
+        <div class="spec-tab mt-5">
+            <ul class="nav nav-tabs" id="productTab" role="tablist">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#spec"
+                        role="tab">Specification</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#desc"
+                        role="tab">Description</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#reviews"
+                        role="tab">Reviews</button></li>
+            </ul>
+
+            <div class="tab-content p-4 border border-top-0">
+                <div class="tab-pane fade show active" id="spec" role="tabpanel">
+                    <p><strong>Processor:</strong> AMD Ryzen 7 7700 Gaming Processor</p>
+                    <p><strong>Motherboard:</strong> MSI PRO B650M-P DDR5 AM5 mATX</p>
+                    <p><strong>RAM:</strong> 8GB DDR5 6000MHz</p>
+                    <p><strong>Storage:</strong> WD SN770 500GB Gen4 SSD</p>
+                </div>
+                <div class="tab-pane fade" id="desc" role="tabpanel">
+                    <p>This is a high-performance gaming PC perfect for 1080p/1440p gaming, streaming, and heavy
+                        multitasking.</p>
+                </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                    <p>No reviews yet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="mt-5">
+            <h4>Related Products</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="related-product text-center">
+                        <img src="https://via.placeholder.com/150" alt="Related" class="img-fluid mb-2">
+                        <h6>AMD Ryzen 5 8600G</h6>
+                        <p><strong>47,999৳</strong> <del>48,750৳</del></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="related-product text-center">
+                        <img src="https://via.placeholder.com/150" alt="Related" class="img-fluid mb-2">
+                        <h6>Ryzen 5 9600X Gaming Desktop PC</h6>
+                        <p><strong>61,000৳</strong> <del>64,800৳</del></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

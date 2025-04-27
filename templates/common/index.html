@@ -1,0 +1,19 @@
+{% load static %}
+<html> 
+    <head> 
+        {% include 'common/meta.html' %}
+        <title> {% block title %} {% endblock %} </title> 
+    </head> 
+    <body> 
+        {% include 'common/nav.html' %}
+        {% block content %}
+
+        {% endblock %}
+
+
+        {% include 'common/footer.html' %}
+
+        {% include 'common/scripts.html' %}
+
+    </body>
+</html>
