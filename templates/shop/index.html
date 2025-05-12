@@ -22,15 +22,16 @@ Shop - Home
             {% for product in product_objects %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100">
-                        <a href="{% url 'shop:single_product' product.id %}">
+                        <a href="{% url 'shop:single_product' product.id %}" >
                         <img src="{{ product.image }}" class="card-img-top img-fluid" alt="{{ product.title }}" style="aspect-ratio: 4/3; object-fit: cover;"> </a>
                         <div class="card-body text-center">
-                            <h5 class="card-title">{{ product.title }}</h5>
+                            <h5 id="nm{{product.id}}" class="card-title">{{ product.title }}</h5>
                             <p class="card-text"><strong>$</strong> {{ product.price }}</p>
                             {% if product.discount_price %}
                                 <p class="card-text text-success"><strong>Discount: $</strong> {{ product.discount_price }}</p>
                             {% endif %}
-                            <a href="{% url 'shop:single_product' product.id %}" class="btn btn-sm btn-primary">Details</a>
+                            <a href="{% url 'shop:single_product' product.id %}" class="btn btn-sm btn-primary">view</a>
+                            <button id="{{product.id}}" class="btn atc btn-sm btn-primary">add to cart</button>
                         </div>
                     </div>
                 </div>

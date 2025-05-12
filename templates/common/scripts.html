@@ -1,2 +1,53 @@
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+    console.log('This is working');
+    if (localStorage.getItem('cart')==null){
+        var cart = {};
+    }
+    else{
+        cart = JSON.parse(localStorage.getItem('cart'))
+    }
+
+    $(document).on('click','.atc', function(){
+        console.log('The add to cart button clicked')
+        var item_id = this.id.toString();
+        if (cart[item_id] != null){
+            cart[item_id] = cart[item_id] + 1;
+        }
+        else{
+            cart[item_id] = 1;
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cart').innerHTML ="Cart("+ Object.keys(cart).length +")";
+        console.log(Object.keys(cart).length);
+    });
+    var cartPopover;
+
+    $(function(){
+        cartPopover = new bootstrap.Popover(document.getElementById('cart'), {
+        html: true,
+        content: '<div class="popover-body">Cart is empty.</div>',
+        trigger: 'focus'
+        });
+    });
+    DisplayCart(cart);
+    function DisplayCart(cart){
+        var cartString = '';
+        var cartIndex = 1;
+        for (var x in cart){
+            cartString += cartIndex + " ";
+            cartString += document.getElementById('nm'+x).innerHTML + ' Qty: ' + cart[x] + "<br>";
+            cartIndex += 1;
+        }
+        cartString += '<a href="/checkout/" class="btn btn-success" id="checkout-btn"> Checkout </a>'
+        document.getElementById("cart").addEventListener('click', function () {
+            cartPopover.setContent({
+                '.popover-body': cartString
+            });
+        });
+     
+    }
+</script>
