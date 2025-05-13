@@ -24,6 +24,7 @@
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById('cart').innerHTML ="Cart("+ Object.keys(cart).length +")";
         console.log(Object.keys(cart).length);
+        DisplayCart(cart);
     });
     var cartPopover;
 
