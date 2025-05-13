@@ -14,10 +14,11 @@
         console.log('The add to cart button clicked')
         var item_id = this.id.toString();
         if (cart[item_id] != null){
-            cart[item_id] = cart[item_id] + 1;
+            cart[item_id][0] = cart[item_id][0] + 1;
         }
         else{
-            cart[item_id] = 1;
+            name = document.getElementById('nm'+item_id).innerHTML
+            cart[item_id] = [1,name];
         }
         console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
