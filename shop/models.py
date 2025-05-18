@@ -10,10 +10,11 @@ class Products(models.Model):
 
 
 class Order(models.Model):
-    item = models.CharField(max_length=2000)
+    items = models.CharField(max_length=2000)
     name = models.CharField(max_length=200)
     phone = models.CharField(max_length=20)
     address = models.CharField(max_length=200)
     email = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    zipcode = models.CharField(max_length=20)
+    zipcode = models.CharField(max_length=20) 
+    total = models.CharField(max_length=200)

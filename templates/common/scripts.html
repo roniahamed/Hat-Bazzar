@@ -15,15 +15,16 @@
         var item_id = this.id.toString();
         if (cart[item_id] != null){
             cart[item_id][0] = cart[item_id][0] + 1;
+            cart[item_id][2] += parseFloat(document.getElementById('price'+item_id)).innerHTML;
         }
         else{
-            name = document.getElementById('nm'+item_id).innerHTML
-            cart[item_id] = [1,name];
+            name = document.getElementById('nm'+item_id).innerHTML;
+            price = parseFloat(document.getElementById('price'+item_id).innerHTML);
+            cart[item_id] = [1,name,price];
         }
         console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById('cart').innerHTML ="Cart("+ Object.keys(cart).length +")";
-        console.log(Object.keys(cart).length);
         DisplayCart(cart);
     });
     var cartPopover;

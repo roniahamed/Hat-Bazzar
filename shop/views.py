@@ -20,12 +20,15 @@ def single_product(request, id):
 
 def checkout(request):
     if request.method == 'POST':
+        items = request.POST.get('items','')
         name = request.POST.get('name','')
         email = request.POST.get('email','')
         phone = request.POST.get('phone','')
         address = request.POST.get('address','')
         city = request.POST.get('city','')
         zipcode = request.POST.get('zip_code','')
-    order = Order(name=name,email=email, phone=phone,address=address, city=city, zipcode=zipcode)
+        print(items)
+        order = Order(items=items,name=name,email=email, phone=phone,address=address, city=city, zipcode=zipcode)
+        order.save()
     
     return render(request, 'shop/checkout.html')
