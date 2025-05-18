@@ -25,7 +25,7 @@
         console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById('cart').innerHTML ="Cart("+ Object.keys(cart).length +")";
-        DisplayCart(cart);
+        DisplayCart();
     });
     var cartPopover;
 
@@ -36,13 +36,14 @@
         trigger: 'focus'
         });
     });
-    DisplayCart(cart);
-    function DisplayCart(cart){
+    DisplayCart();
+    function DisplayCart(){
+        cartObject = JSON.parse(localStorage.getItem('cart'))
         var cartString = '';
         var cartIndex = 1;
-        for (var x in cart){
+        for (item in cartObject){
             cartString += cartIndex + " ";
-            cartString += document.getElementById('nm'+x).innerHTML + ' Qty: ' + cart[x] + "<br>";
+            cartString += cartObject[item][1] + ' Qty: ' + cartObject[item][2] + "<br>";
             cartIndex += 1;
         }
         cartString += '<a href="/checkout/" class="btn btn-success" id="checkout-btn"> Checkout </a>'
