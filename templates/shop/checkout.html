@@ -11,9 +11,6 @@
                 
             </ul>
         </div>
-        <div class='from-control' id='total' name='total' >Total: </div>
-        
-        </div>
     </br>
     <br/>
     <form method="post" action="{% url 'shop:checkout' %}">
@@ -45,6 +42,10 @@
                 <div class="form-group mb-3">
                     <label for="zip_code">Zip Code</label>
                     <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Enter your zip code" >
+                </div>
+                <div class="form-group mb-3">
+                    {% comment %} <label for="zip_code">Zip Code</label> {% endcomment %}
+                    <input id="total" name="total" type="text" readonly="" hidden >
                 </div>
             </div>
             <div class="col-md-6">
@@ -87,12 +88,15 @@
         let price = cart[item][2]
         total += price
         
-        itemString = `<li class="list-group-item d-flex justify-content-between align-items-center">${name} <span class=""> Price: ${price} </span>  <span class="badge text-bg-primary rounded-pill">${quantity}</span>
-  </li>`
-        $('#item_list').append(itemString)
+        itemString = `<li class="list-group-item d-flex justify-content-between align-items-center">${name} </span>  <span class="badge text-bg-primary rounded-pill">${quantity}</span> <span class="badge bg-warning text-dark rounded-pill"> Price:  ${price} </li>`
+        $('#item_list').append(itemString);
 
     }
-    
+    total = total.toFixed(2);
+    totalPrice = `<li class="list-group-item d-flex justify-content-between align-items-center"><strong> Total price: </strong> <span class="badge bg-warning text-dark rounded-pill"> ${total}</span> </li>`
+
+    $('#item_list').append(totalPrice);
+    $('#total').val(total);
     $('#items').val(JSON.stringify(cart));
 </script>
 {% endblock %}
